@@ -122,7 +122,7 @@ npx hardhat run scripts/deploy.js --network localhost
 
 ## 🎓 Built for ETHDublin Hackathon 2025
 
-Team: Ujwal Mojidra & Team
+Team: PatentAI (ETH Dublin-25)
 
 Open-source contributions welcome! PRs, feature requests and forks appreciated.
 
@@ -134,6 +134,6 @@ MIT License. See `LICENSE` file.
 
 ---
 
-## 📈 Sample Screenshot
+## 📈 Project Video
 
-![screenshot](./react-client/public/sample_ui.png)
+![YouTube Link](https://youtu.be/NBk4JuVnN9Y)
