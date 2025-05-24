@@ -1,4 +1,4 @@
-# 🧠 Decentralized Patent Submission Platform
+# IPs on BlockChain
 
 This project is a **modular, secure, and fully containerized** system designed to facilitate the submission, deduplication, hashing, and decentralized storage of patents using **FastAPI**, **Docker**, **Redis**, **PostgreSQL**, and **Web3.Storage/IPFS**.
 
@@ -29,4 +29,5 @@ This project is a **modular, secure, and fully containerized** system designed t
 ## 🧱 Architecture
 
 Refer to the system design file for a complete overview of how the services interact:  
-➡️ **[System Design Diagram](https://github.com/joelkariyalil/Patents-on-Block-Chain/blob/backend/Sketches/system-design.png?raw=true)**
+![System Design](https://github.com/joelkariyalil/Patents-on-Block-Chain/blob/backend/Sketches/system-design.png?raw=true)
+
