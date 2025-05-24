@@ -1,0 +1,1 @@
+This is essentially a container to store the results of the AI-Agents in Hash so as to prevent frequent calls.
