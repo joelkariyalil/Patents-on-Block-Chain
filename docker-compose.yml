@@ -56,6 +56,16 @@ services:
       - ipfs_data:/data/ipfs
     restart: always
 
+  ai-agent:
+    build:
+      context: ./ai-agent
+    container_name: patents_ai_agent
+    ports:
+      - "8000:8000"
+    depends_on:
+      - agent-response-db  # Ensure Redis is up before AI agent starts
+    restart: always
+
 volumes:
   pgdata_patents:
   pgdata_ipfs:

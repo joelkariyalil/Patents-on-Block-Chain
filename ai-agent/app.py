@@ -9,7 +9,7 @@ import pdfplumber
 from sentence_transformers import SentenceTransformer
 from transformers import pipeline
 import re
-from redis import Redis
+import redis
 import json
 
 app = FastAPI()
@@ -29,9 +29,9 @@ model = SentenceTransformer("all-MiniLM-L6-v2")   # For semantic vector generati
 llm = pipeline("text2text-generation", model="google/flan-t5-large")  # LLM for reasoning
 
 # Redis configuration
-REDIS_HOST = "localhost"
+REDIS_HOST = "agent-response-db"
 REDIS_PORT = 6379
-redis_client = Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+redis_client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 # Store embedding in Redis
 def store_embedding(filename, embedding):
@@ -214,6 +214,11 @@ async def upload_and_check(file: UploadFile = File(...)):
             content={"error": f"Error processing request: {str(e)}"},
             status_code=500
         )
+
+@app.get("/health")
+async def health_check():
+    return {"status": "ok", "message": "AI agent is running"}
+
 
 if __name__ == "__main__":
     import uvicorn
