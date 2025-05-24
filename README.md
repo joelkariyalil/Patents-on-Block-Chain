@@ -136,4 +136,5 @@ MIT License. See `LICENSE` file.
 
 ## 📈 Project Video
 
-![YouTube Link](https://youtu.be/NBk4JuVnN9Y)
+[![Watch the Demo](https://img.youtube.com/vi/NBk4JuVnN9Y/0.jpg)](https://youtu.be/NBk4JuVnN9Y)
+
