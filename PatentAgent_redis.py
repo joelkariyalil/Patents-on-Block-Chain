@@ -26,7 +26,7 @@ os.makedirs(PATENT_DIR, exist_ok=True)
 
 # Initialize models
 model = SentenceTransformer("all-MiniLM-L6-v2")   # For semantic vector generation
-llm = pipeline("text2text-generation", model="google/flan-t5-large")  # LLM for reasoning
+llm = pipeline("text2text-generation", model="google/flan-t5-large", do_sample=False)  # LLM for reasoning
 
 # Redis configuration
 REDIS_HOST = "localhost"
@@ -164,6 +164,7 @@ async def upload_and_check(file: UploadFile = File(...)):
         query_vec = model.encode([text])[0].astype(np.float32)
 
         # Find most similar patent
+        #best_match_file, raw_distance = find_similar_patent(query_vec)
         best_match_file, uniqueness_score = find_similar_patent(query_vec)
         
         if not best_match_file:
@@ -174,7 +175,9 @@ async def upload_and_check(file: UploadFile = File(...)):
         
         # Convert numpy types to Python native types
         uniqueness_score = float(uniqueness_score)
-        similarity_score = float(1.0 - min(1.0, uniqueness_score / 10.0))  # Normalize distance to similarity
+        # Clamp uniqueness_score between 0 and 1
+        uniqueness_score = min(max(uniqueness_score, 0.0), 1.0)
+        similarity_score = 1.0 - uniqueness_score
         
         # Get matched patent text
         match_text = extract_text(os.path.join(PATENT_DIR, best_match_file))
@@ -186,11 +189,11 @@ async def upload_and_check(file: UploadFile = File(...)):
         # Handle file storage
         is_unique = bool(uniqueness_score > SIMILARITY_THRESHOLD)  # Convert numpy.bool to Python bool
         if is_unique:
-            os.remove(file_path)
-        else:
             new_patent_path = os.path.join(PATENT_DIR, file.filename)
             shutil.move(file_path, new_patent_path)
             store_embedding(file.filename, query_vec)
+        else:
+            os.remove(file_path)
         
         # Return response with native Python types
         return {
