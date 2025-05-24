@@ -10,12 +10,18 @@ contract PatentVerifier {
     }
 
     mapping(address => Record[]) public userRecords;
+    mapping(bytes32 => bool) public usedCIDs; // ✅ Store hashed CID
 
     event RecordStored(address indexed user, string cid, uint256 score, string decision, uint256 timestamp);
 
     function storeResult(string memory _cid, uint256 _score, string memory _decision) public {
+        bytes32 cidHash = keccak256(abi.encodePacked(_cid)); // 🔒 Hash the CID
+        require(!usedCIDs[cidHash], "CID already recorded");
+
         Record memory newRecord = Record(_cid, _score, _decision, block.timestamp);
         userRecords[msg.sender].push(newRecord);
+
+        usedCIDs[cidHash] = true; // ✅ Mark as used
 
         emit RecordStored(msg.sender, _cid, _score, _decision, block.timestamp);
     }
