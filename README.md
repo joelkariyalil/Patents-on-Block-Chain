@@ -54,7 +54,6 @@ transformers
 faiss-cpu
 pdfplumber
 python-multipart
-sqlite3  # comes built-in
 requests
 ```
 
@@ -82,30 +81,81 @@ npx hardhat compile
 ```bash
 cd backend
 uvicorn main:app --reload
+# Keep it Running, it might shoot some rubbish outputs, end goal is it will show uvicorn started at: https:\\ (our backend URL)
 ```
 
-### 2. Start Frontend
-
-```bash
-cd react-client
-npm start
-```
-
-Visit: `http://localhost:3000`
-
-### 3. Compile + Deploy Smart Contract
+### 2. Compile + Deploy Smart Contract
 
 ```bash
 cd blockchain
 npx hardhat node
 # In another terminal:
 npx hardhat run scripts/deploy.js --network localhost
+# Make sure both things are running in terminal (Don't press stop or kill)
+``` 
+### 3. Start Frontend
+
+```bash
+cd react-client
+npm start
 ```
+
+Visit: `http://localhost:3000` (Visit this only if webpage not opens automatically)
 
 ### 4. Configure React
 
-* Update `CONTRACT_ADDRESS` in `MetaMaskSubmit.jsx`
+* Update `CONTRACT_ADDRESS` in `MetaMaskSubmit.jsx` (This file is located in react-client/src/components)
 * Ensure IPFS Pinata keys are correctly set in `ipfs_upload.py`
+
+---
+
+## 🦊 MetaMask & Hardhat Setup
+
+To interact with the smart contract using MetaMask and the Hardhat local blockchain:
+
+### 1. Start the Hardhat Node
+
+```bash
+cd blockchain
+npx hardhat node
+```
+
+This will spin up a local Ethereum network and print 20 funded accounts with their private keys.
+
+### 2. Import Hardhat Wallets into MetaMask
+
+* Open MetaMask ➜ Click on account icon ➜ `Import Account`
+* Paste one of the private keys from Hardhat output
+* Repeat to import multiple wallets if needed (for testing multiple users)
+
+### 3. Add Localhost Network to MetaMask
+
+Go to MetaMask ➜ `Settings` ➜ `Networks` ➜ `Add Network` ➜ Fill in:
+
+```
+Network Name:      Localhost 8545
+New RPC URL:       http://127.0.0.1:8545
+Chain ID:          31337
+Currency Symbol:   ETH
+```
+
+Click Save. Now your MetaMask is ready to interact with Hardhat.
+
+### 4. Deploy the Smart Contract
+
+```bash
+npx hardhat run scripts/deploy.js --network localhost
+```
+
+Copy the deployed contract address from the output.
+
+### 5. Update Frontend Contract Address
+
+In `react-client/src/components/MetaMaskSubmit.jsx`, replace the existing contract address with the new one:
+
+```js
+const CONTRACT_ADDRESS = "your_new_deployed_address_here";
+```
 
 ---
 
@@ -137,4 +187,3 @@ MIT License. See `LICENSE` file.
 ## 📈 Project Video
 
 [![Watch the Demo](https://img.youtube.com/vi/NBk4JuVnN9Y/0.jpg)](https://youtu.be/NBk4JuVnN9Y)
-
