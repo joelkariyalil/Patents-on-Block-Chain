@@ -113,22 +113,13 @@ Visit: `http://localhost:3000` (Visit this only if webpage not opens automatical
 
 To interact with the smart contract using MetaMask and the Hardhat local blockchain:
 
-### 1. Start the Hardhat Node
-
-```bash
-cd blockchain
-npx hardhat node
-```
-
-This will spin up a local Ethereum network and print 20 funded accounts with their private keys.
-
-### 2. Import Hardhat Wallets into MetaMask
+### 1. Import Hardhat Wallets into MetaMask
 
 * Open MetaMask ➜ Click on account icon ➜ `Import Account`
-* Paste one of the private keys from Hardhat output
+* Paste one of the private keys from Hardhat output (from the terminal where we ran "npx hardhat node")
 * Repeat to import multiple wallets if needed (for testing multiple users)
 
-### 3. Add Localhost Network to MetaMask
+### 2. Add Localhost Network to MetaMask
 
 Go to MetaMask ➜ `Settings` ➜ `Networks` ➜ `Add Network` ➜ Fill in:
 
@@ -140,22 +131,6 @@ Currency Symbol:   ETH
 ```
 
 Click Save. Now your MetaMask is ready to interact with Hardhat.
-
-### 4. Deploy the Smart Contract
-
-```bash
-npx hardhat run scripts/deploy.js --network localhost
-```
-
-Copy the deployed contract address from the output.
-
-### 5. Update Frontend Contract Address
-
-In `react-client/src/components/MetaMaskSubmit.jsx`, replace the existing contract address with the new one:
-
-```js
-const CONTRACT_ADDRESS = "your_new_deployed_address_here";
-```
 
 ---
 
