@@ -162,3 +162,9 @@ MIT License. See `LICENSE` file.
 ## 📈 Project Video
 
 [![Watch the Demo](https://img.youtube.com/vi/NBk4JuVnN9Y/0.jpg)](https://youtu.be/NBk4JuVnN9Y)
+
+## Contributions
+
+Front End and UI + Working Project Demo - Ujwal Mojidra
+Agentic AI and LLMs - Rahul Babu and Sarosh Farhan
+Backend and Containerzation - Joel Thomas Chacko
