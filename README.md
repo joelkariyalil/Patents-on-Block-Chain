@@ -165,6 +165,6 @@ MIT License. See `LICENSE` file.
 
 ## Contributions
 
-Front End and UI + Working Project Demo - Ujwal Mojidra
-Agentic AI and LLMs - Rahul Babu and Sarosh Farhan
-Backend and Containerzation - Joel Thomas Chacko
+- Front End and UI + Working Project Demo - Ujwal Mojidra  
+- Agentic AI and LLMs - Rahul Babu and Sarosh Farhan  
+- Backend and Containerzation - Joel Thomas Chacko  
