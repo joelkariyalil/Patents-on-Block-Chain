@@ -167,4 +167,4 @@ MIT License. See `LICENSE` file.
 
 - Front End and UI + Working Project Demo - Ujwal Mojidra  
 - Agentic AI and LLMs - Rahul Babu and Sarosh Farhan  
-- Backend and Containerzation - Joel Thomas Chacko  
+- Backend and Containerization - Joel Thomas Chacko  
